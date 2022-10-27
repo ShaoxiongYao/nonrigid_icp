@@ -1,6 +1,7 @@
 import numpy as np
 import open3d as o3d
 import copy
+import time
 
 from icp import icp, draw_registration_result
 from nricp import nonrigidIcp
@@ -35,6 +36,9 @@ if __name__ == '__main__':
 
 
     # non rigid registration
+    print("INFO: non-rigid ICP starts")
+    start_time = time.time()
     deformed_mesh = nonrigidIcp(refined_sourcemesh, targetmesh)
+    print("Non-rigid ICP time:", time.time()-start_time)
     deformed_mesh.paint_uniform_color([0.1, 0.1, 0.9])
     o3d.visualization.draw_geometries([targetmesh, deformed_mesh])
