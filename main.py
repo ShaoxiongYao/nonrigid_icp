@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     # visualize source and target meshes
     sourcemesh.paint_uniform_color([0.1, 0.9, 0.1])
-    targetmesh.paint_uniform_color([0.9,0.1,0.1])
+    targetmesh.paint_uniform_color([0.9, 0.1, 0.1])
     o3d.visualization.draw_geometries([sourcemesh, targetmesh])
 
 
@@ -29,18 +29,12 @@ if __name__ == '__main__':
     refined_sourcemesh = copy.deepcopy(sourcemesh)
     refined_sourcemesh.transform(affine_transform)
     refined_sourcemesh.compute_vertex_normals()
-
-    targetmesh.paint_uniform_color([0.9,0.1,0.1])
-    refined_sourcemesh.paint_uniform_color([0.1,0.1,0.9])
+    # visualize refined mesh
+    refined_sourcemesh.paint_uniform_color([0.1, 0.1, 0.9])
     o3d.visualization.draw_geometries([targetmesh, refined_sourcemesh])
 
 
     # non rigid registration
-    deformed_mesh = nonrigidIcp(refined_sourcemesh,targetmesh)
-
-    sourcemesh.paint_uniform_color([0.1, 0.9, 0.1])
-    targetmesh.paint_uniform_color([0.9,0.1,0.1])
-    deformed_mesh.paint_uniform_color([0.1,0.1,0.9])
-    o3d.visualization.draw_geometries([targetmesh,deformed_mesh])
-
-
+    deformed_mesh = nonrigidIcp(refined_sourcemesh, targetmesh)
+    deformed_mesh.paint_uniform_color([0.1, 0.1, 0.9])
+    o3d.visualization.draw_geometries([targetmesh, deformed_mesh])
