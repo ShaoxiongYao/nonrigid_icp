@@ -15,10 +15,10 @@ def choleskySolve(M, b):
     return factor(M.T.dot(b)).toarray()
 
 
-Debug=True
-normalWeighting=False
+Debug = False
+normalWeighting = False
 gamma = 1
-alphas = np.linspace(200,1,20)
+alphas = np.linspace(200,1.2,20)
 
 def nonrigidIcp(sourcemesh,targetmesh):
     
