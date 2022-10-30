@@ -47,6 +47,12 @@ def nonrigidIcp(sourcemesh,targetmesh):
         alledges.append(tuple([face[1],face[2]]))
         
     edges = set(alledges)
+
+    # check no duplicate bidirectional edge
+    if Debug:
+        rev_edges_lst = [(x[1], x[0]) for x in list(edges)]
+        for rev_edge in rev_edges_lst:
+            assert rev_edge not in edges
     n_source_edges = len(edges)
 
 
